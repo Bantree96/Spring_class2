@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // 컨트롤러라고 적어줘야 컨트롤러를 등록함
+// 웹페이지에는 Controller
 @Controller
 //@RestController // 결과물을 바로 받아올땐 RestController
 public class BoardController {

@@ -35,6 +35,7 @@ public class DataBaseConfiguration {
 		return new HikariConfig();
 	}
 	
+	// DB하고 hikari를 연결하기 위해 dataSource를 사용
 	@Bean
 	public DataSource dataSource() throws Exception {
 		// 데이터 소스를 만들때 hikariConfig()에 접근해 받아온다
@@ -50,10 +51,9 @@ public class DataBaseConfiguration {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		
 		// mapper연결 : mapper란? 예를들어 마이바티스라고 치면 마이바티스의 위치정보?
-//		sqlSessionFactoryBean.setMapperLocations(
-//				// **은 뭐가 올지 모름
-//				appContext.getResources("classpath:/mapper/**/sql-*.xml")
-//				);
+		sqlSessionFactoryBean.setMapperLocations(
+			appContext.getResources("classpath:/mapper/**/sql-*.xml") 	// **은 뭐가 올지 모름
+		);
 		
 		// .getObject로 하면 sessionfactory로 리턴
 		return sqlSessionFactoryBean.getObject();

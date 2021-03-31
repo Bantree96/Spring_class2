@@ -55,9 +55,18 @@ public class DataBaseConfiguration {
 			appContext.getResources("classpath:/mapper/**/sql-*.xml") 	// **은 뭐가 올지 모름
 		);
 		
+		// 마이바티스에 대한 설정 추가
+		sqlSessionFactoryBean.setConfiguration(myBatisConfig());
+		
 		// .getObject로 하면 sessionfactory로 리턴
 		return sqlSessionFactoryBean.getObject();
 		
+	}
+	
+	@Bean
+	@ConfigurationProperties(prefix = "mybatis.configuration")
+	public org.apache.ibatis.session.Configuration myBatisConfig(){
+		return new org.apache.ibatis.session.Configuration(); 
 	}
 	
 	// sql던지는걸 도와줌

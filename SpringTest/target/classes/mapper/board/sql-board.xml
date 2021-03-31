@@ -4,4 +4,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace=""></mapper>
+<mapper namespace="kr.inhatc.spring.board.mapper.BoardMapper">
+	<!-- id : 이 동작을할때 뭘 타고 들어올껀지(서비스메소드 이름과같음) -->
+	<!-- resultType : dto경로 -->
+	<select id="boardList" resultType="kr.inhatc.spring.board.dto.BoardDto">
+		SELECT * FROM T_BOARD
+	</select>
+</mapper>

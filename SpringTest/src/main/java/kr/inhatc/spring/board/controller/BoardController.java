@@ -29,12 +29,14 @@ public class BoardController {
 		return "index";
 	}
 	
+	// board 리스트
 	@RequestMapping("/board/boardList")
+	// model은 컨트롤러에서 html로 값을 넘길때 
 	public String boardList(Model model) {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
 		System.out.println("============>"+list.size());
-		System.out.println("============>"+list.get(0));
+		System.out.println("============>"+list.get(2));
 
 		// 모델이 웹페이지로 갈때 가져감
 		model.addAttribute("list",list);
@@ -42,5 +44,19 @@ public class BoardController {
 
 		// 뷰어로 이동
 		return "board/boardList";
+	}
+	
+	// board 글쓰기
+	@RequestMapping("/board/boardWriteForm")
+	public String boardWriteForm(Model model) {
+		return "board/boardWriteForm";
+	}
+	
+	// board 글 작성 내용 DB insert
+	@RequestMapping("/board/boardInsert")
+	public String boardInsert(BoardDto board) {
+		boardService.boardInsert(board);
+		// insert가 끝나면 컨트롤러 내부에서 redirect함
+		return "redirect:/board/boardList";
 	}
 }

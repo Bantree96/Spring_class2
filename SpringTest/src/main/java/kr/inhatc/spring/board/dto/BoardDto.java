@@ -13,13 +13,10 @@ import lombok.Setter;
 public class BoardDto {
 	
 	// DB컬럼명과 이름이 같아야함
-	private int boardIdx;
+	private int board_Idx;
 	private String title;
 	private String contents;
 	private int hitCnt;
-	private String createId;
-	private Date createDate;
-	
-	
-	
+	private String create_Id;
+	private Date CREATE_DATE;
 }

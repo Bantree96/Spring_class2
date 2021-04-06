@@ -10,4 +10,16 @@
 	<select id="boardList" resultType="kr.inhatc.spring.board.dto.BoardDto">
 		SELECT * FROM T_BOARD
 	</select>
+	
+	<insert id="boardInsert" parameterType="kr.inhatc.spring.board.dto.BoardDto">
+	
+		<!-- 시퀀스 사용해 index값 가져오기 -->
+		<!-- DUAL : 테이블없이 특정 시스템값 가져옴 -->
+		<selectKey keyProperty="board_Idx" resultType="int" order="BEFORE">
+			SELECT board_seq.nextval FROM DUAL
+		</selectKey>
+		
+		INSERT INTO t_board (board_Idx, title, contents, CREATE_DATE, create_Id)
+		VALUES (#{board_Idx}, #{title}, #{contents}, sysdate, 'admin')
+	</insert>
 </mapper>

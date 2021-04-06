@@ -11,4 +11,6 @@ public interface BoardMapper {
 
 	List<BoardDto> boardList();
 
+	void boardInsert(BoardDto board);
+
 }

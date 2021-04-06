@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
+<!-- 타임리프 네임스페이스 세팅 -->
+<html lang='ko' xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 리스트</title>
+<!-- 타임리프에서 css주는법 -->
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
 </head>
 <body>
-	<h1>사용자 리스트 페이지</h1>
+	<div class="container">
+		<h1>사용자 리스트 페이지</h1>
+		<table class="board_list">
+			<colgroup>
+				<col width="15%" />
+				<col width="*" />
+				<col width="15%" />
+				<col width="20%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">조회수</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
+				<tr	th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
+					<td th:text="${vo.board_Idx}"></td>
+					<td th:text="${vo.title}"></td>
+					<td th:text="${vo.hitCnt}"></td>
+					<td th:text="${vo.CREATE_DATE}"></td>
+				</tr>
+				<!-- unless = else -->
+				<tr th:unless="${#lists.size(list)} > 0">
+					<td colspan="4">조회된 결과가 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/board/boardWriteForm" class="btn">글쓰기</a>
+		
+	</div>
+	
 </body>
 </html>

@@ -29,10 +29,10 @@
 				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
 				<tr	th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
-					<td th:text="${vo.board_Idx}"></td>
+					<td th:text="${vo.boardIdx}"></td>
 					<td th:text="${vo.title}"></td>
 					<td th:text="${vo.hitCnt}"></td>
-					<td th:text="${vo.CREATE_DATE}"></td>
+					<td th:text="${vo.createDate}"></td>
 				</tr>
 				<!-- unless = else -->
 				<tr th:unless="${#lists.size(list)} > 0">

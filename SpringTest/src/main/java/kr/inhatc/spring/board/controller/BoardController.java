@@ -36,7 +36,7 @@ public class BoardController {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
 		System.out.println("============>"+list.size());
-		System.out.println("============>"+list.get(2));
+		//System.out.println("============>"+list.get(0));
 
 		// 모델이 웹페이지로 갈때 가져감
 		model.addAttribute("list",list);

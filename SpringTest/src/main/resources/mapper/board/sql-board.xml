@@ -15,11 +15,11 @@
 	
 		<!-- 시퀀스 사용해 index값 가져오기 -->
 		<!-- DUAL : 테이블없이 특정 시스템값 가져옴 -->
-		<selectKey keyProperty="board_Idx" resultType="int" order="BEFORE">
+		<selectKey keyProperty="boardIdx" resultType="int" order="BEFORE">
 			SELECT board_seq.nextval FROM DUAL
 		</selectKey>
-		
-		INSERT INTO t_board (board_Idx, title, contents, CREATE_DATE, create_Id)
-		VALUES (#{board_Idx}, #{title}, #{contents}, sysdate, 'admin')
+		<!-- 여기는 또 DB명과 똑같이 적어줘야함 -->
+		INSERT INTO t_board (board_Idx, title, contents, create_Date, create_Id)
+		VALUES (#{boardIdx}, #{title}, #{contents}, sysdate, 'admin')
 	</insert>
 </mapper>

@@ -13,6 +13,7 @@ import kr.inhatc.spring.board.service.BoardService;
 
 // 컨트롤러라고 적어줘야 컨트롤러를 등록함
 // 웹페이지에는 Controller
+
 @Controller
 //@RestController // 결과물을 바로 받아올땐 RestController
 public class BoardController {
@@ -37,8 +38,10 @@ public class BoardController {
 		List<BoardDto> list = boardService.boardList();
 		System.out.println("============>"+list.size());
 		//System.out.println("============>"+list.get(0));
-
+		
+		// 모델 = data
 		// 모델이 웹페이지로 갈때 가져감
+		// java자료구조 = key:value = map형태라고함
 		model.addAttribute("list",list);
 		model.addAttribute("name","홍길동");
 

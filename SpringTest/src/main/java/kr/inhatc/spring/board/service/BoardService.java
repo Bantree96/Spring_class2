@@ -12,4 +12,12 @@ public interface BoardService {
 	// 게시글 작성 Dto
 	void boardInsert(BoardDto board);
 
+	// 게시글 상세 Dto
+	BoardDto boardDetail(int boardIdx);
+
+	// 게시글 업데이트 Dto
+	void boardUpdate(BoardDto board);
+
+	void boardDelete(int boardIdx);
+
 }

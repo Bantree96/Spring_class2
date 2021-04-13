@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.inhatc.spring.board.dto.BoardDto;
@@ -36,7 +37,7 @@ public class BoardController {
 	public String boardList(Model model) {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
-		System.out.println("============>"+list.size());
+		//System.out.println("============>"+list.size());
 		//System.out.println("============>"+list.get(0));
 		
 		// 모델 = data
@@ -59,6 +60,40 @@ public class BoardController {
 	@RequestMapping("/board/boardInsert")
 	public String boardInsert(BoardDto board) {
 		boardService.boardInsert(board);
+		// insert가 끝나면 컨트롤러 내부에서 redirect함
+		return "redirect:/board/boardList";
+	}
+	
+	// board 상세
+	@RequestMapping("/board/boardDetail")
+	// 하나만 넘겨올때는 @RequestsParam으로 받아옴
+	public String boardDetail(@RequestParam int boardIdx, Model model) {
+		BoardDto board = boardService.boardDetail(boardIdx);
+		//System.out.println("=========> boardIdx : "+ boardIdx);
+		//System.out.println(board);
+		
+		model.addAttribute("board",board);
+		
+		return "board/boardDetail";
+	}
+	
+	// board 수정
+	@RequestMapping("/board/boardUpdate")
+	public String boardUpdate(BoardDto board) {
+		boardService.boardUpdate(board);
+//		System.out.println("=========> boardIdx : "+ board.getBoardIdx());
+//		System.out.println("=========> boardTitle : "+ board.getTitle());
+
+		// insert가 끝나면 컨트롤러 내부에서 redirect함
+		return "redirect:/board/boardList";
+	}
+	
+
+	// board 삭제
+	@RequestMapping("/board/boardDelete")
+	public String boardDelete(@RequestParam("boardIdx") int boardIdx) {
+		boardService.boardDelete(boardIdx);
+
 		// insert가 끝나면 컨트롤러 내부에서 redirect함
 		return "redirect:/board/boardList";
 	}

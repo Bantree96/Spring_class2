@@ -9,7 +9,9 @@
 	<!-- resultType : dto경로 -->
 	<!-- 받아올때 resultType -->
 	<select id="boardList" resultType="kr.inhatc.spring.board.dto.BoardDto">
-		SELECT * FROM T_BOARD
+		SELECT * FROM T_BOARD 
+		WHERE delete_yn = 'N'
+		ORDER BY board_idx DESC
 	</select>
 	
 	<!-- 전달할때 parameterType -->
@@ -22,7 +24,7 @@
 			SELECT board_seq.nextval FROM DUAL
 		</selectKey>
 		
-		<!-- 여기는 또 DB명과 똑같이 적어줘야함 -->
+		<!-- 여기는 DB명과 똑같이 적어줘야함 -->
 		INSERT INTO t_board (board_idx, title, contents, create_date, create_id)
 		<!-- 여기는 자바랑 맞춰줘야함 -->
 		<!-- 매개변수 사용법 #{Dto값}를 하면 parameterType의 Dto에서 값을 가져옴 -->

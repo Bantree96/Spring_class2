@@ -1,5 +1,5 @@
 <!-- 
-	boardWriteForm
+	boardDetail.html
 	게시판 상세 폼
  -->
 <!DOCTYPE html>
@@ -51,6 +51,7 @@
 					
 				</tbody>
 			</table>
+			<!-- boardIdx hidden 처리 -->
 			<input type="hidden" name="boardIdx" th:value="${board.boardIdx}"/>
 			
 		</form>
@@ -61,16 +62,19 @@
 		<input type="button" id="delete" value="삭제" class="btn" />
 	</div>
 	
+	<!-- jquery CDN -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
   
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// 이건 a태그 쓰는게 더 나음
 			$("#list").on("click", function(){
 				location.href = "/board/boardList";
 			});
 			
+			// 같은 form에서 서로 다른 동작(action)을 하기 위해 JS로 처리했다. -> 수정, 삭제
 			$("#edit").on("click", function(){
 				alert("글이 수정 되었습니다.");
 				let frm = $("#frm")[0];

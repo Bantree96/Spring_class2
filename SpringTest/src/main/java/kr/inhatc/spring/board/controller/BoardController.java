@@ -24,7 +24,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	
-	// 요구가 들어올때 어떻게 맵핑할껀가?
+	// 요구가 들어올때 어떻게 맵핑할건가?
 	// 기본적으로 html파일을 찾아감
 	@RequestMapping("/")
 	public String hello() {
@@ -46,7 +46,7 @@ public class BoardController {
 		model.addAttribute("list",list);
 		model.addAttribute("name","홍길동");
 
-		// 뷰어로 이동
+		// 뷰어로 이동 -> 웹페이지를 찾아감
 		return "board/boardList";
 	}
 	
@@ -61,6 +61,7 @@ public class BoardController {
 	public String boardInsert(BoardDto board) {
 		boardService.boardInsert(board);
 		// insert가 끝나면 컨트롤러 내부에서 redirect함
+		// redirect는 내부 컨트롤러에 있는 주소를 찾아감 -> 다시 찾아간다 라고 생각하면됨
 		return "redirect:/board/boardList";
 	}
 	
@@ -72,6 +73,7 @@ public class BoardController {
 		//System.out.println("=========> boardIdx : "+ boardIdx);
 		//System.out.println(board);
 		
+		// 뷰에서 보여주기위해 model에 추가
 		model.addAttribute("board",board);
 		
 		return "board/boardDetail";
@@ -83,18 +85,15 @@ public class BoardController {
 		boardService.boardUpdate(board);
 //		System.out.println("=========> boardIdx : "+ board.getBoardIdx());
 //		System.out.println("=========> boardTitle : "+ board.getTitle());
-
-		// insert가 끝나면 컨트롤러 내부에서 redirect함
 		return "redirect:/board/boardList";
 	}
 	
 
 	// board 삭제
 	@RequestMapping("/board/boardDelete")
+	// @RequestsParam("name명시") name이 같으면 명시해주지 않아도됨
 	public String boardDelete(@RequestParam("boardIdx") int boardIdx) {
 		boardService.boardDelete(boardIdx);
-
-		// insert가 끝나면 컨트롤러 내부에서 redirect함
 		return "redirect:/board/boardList";
 	}
 }

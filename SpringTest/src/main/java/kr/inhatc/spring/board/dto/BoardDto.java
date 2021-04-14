@@ -19,5 +19,5 @@ public class BoardDto {
 	private String contents;
 	private int hitCnt;
 	private String createId;
-	private Date createDate;
+	private String createDate;
 }

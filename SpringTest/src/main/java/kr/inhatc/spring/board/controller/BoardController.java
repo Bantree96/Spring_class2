@@ -71,7 +71,7 @@ public class BoardController {
 	public String boardDetail(@RequestParam int boardIdx, Model model) {
 		BoardDto board = boardService.boardDetail(boardIdx);
 		//System.out.println("=========> boardIdx : "+ boardIdx);
-		//System.out.println(board);
+		System.out.println(board);
 		
 		// 뷰에서 보여주기위해 model에 추가
 		model.addAttribute("board",board);

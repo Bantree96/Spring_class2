@@ -3,3 +3,6 @@ kr\inhatc\spring\SpringTestApplication.class
 kr\inhatc\spring\board\controller\BoardController.class
 META-INF\spring-configuration-metadata.json
 kr\inhatc\spring\configuration\DataBaseConfiguration.class
+kr\inhatc\spring\board\mapper\BoardMapper.class
+kr\inhatc\spring\board\service\BoardServiceImpl.class
+kr\inhatc\spring\board\service\BoardService.class

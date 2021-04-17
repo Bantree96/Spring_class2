@@ -2,6 +2,8 @@ package kr.inhatc.spring.board.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ import kr.inhatc.spring.board.service.BoardService;
 @Controller
 //@RestController // 결과물을 바로 받아올땐 RestController
 public class BoardController {
+	
+	// logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	// 게시판 서비스
 	@Autowired
@@ -37,6 +42,11 @@ public class BoardController {
 	public String boardList(Model model) {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
+		
+		// logger를 활용한 로그 찍기
+		log.debug("============>"+list.size());
+		
+		// 콘솔화면에 일반 로그 찍기
 		//System.out.println("============>"+list.size());
 		//System.out.println("============>"+list.get(0));
 		

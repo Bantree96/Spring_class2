@@ -4,13 +4,13 @@
       "name": "mybatis.configuration",
       "type": "org.apache.ibatis.session.Configuration",
       "sourceType": "kr.inhatc.spring.configuration.DataBaseConfiguration",
-      "sourceMethod": "public org.apache.ibatis.session.Configuration myBatisConfig() "
+      "sourceMethod": "myBatisConfig()"
     },
     {
       "name": "spring.datasource.hikari",
       "type": "com.zaxxer.hikari.HikariConfig",
       "sourceType": "kr.inhatc.spring.configuration.DataBaseConfiguration",
-      "sourceMethod": "public com.zaxxer.hikari.HikariConfig hikariConfig() "
+      "sourceMethod": "hikariConfig()"
     }
   ],
   "properties": [

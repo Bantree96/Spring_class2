@@ -1,14 +1,15 @@
 package kr.inhatc.spring.board.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 // lombok사용 어노테이션
-@Setter
-@Getter
+//@Setter
+//@Getter
 @Data
 public class BoardDto {
 	
@@ -20,4 +21,7 @@ public class BoardDto {
 	private int hitCnt;
 	private String createId;
 	private String createDate;
+	
+	// 파일 보여주기 위해 파일리스트 만들어줌
+	private List<FileDto> fileList;
 }

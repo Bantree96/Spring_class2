@@ -2,7 +2,10 @@ package kr.inhatc.spring.board.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import kr.inhatc.spring.board.dto.BoardDto;
+import kr.inhatc.spring.board.dto.FileDto;
 
 public interface BoardService {
 
@@ -10,7 +13,7 @@ public interface BoardService {
 	List<BoardDto> boardList();
 	
 	// 게시글 작성 Dto
-	void boardInsert(BoardDto board);
+	void boardInsert(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest);
 
 	// 게시글 상세 Dto
 	BoardDto boardDetail(int boardIdx);
@@ -19,5 +22,7 @@ public interface BoardService {
 	void boardUpdate(BoardDto board);
 
 	void boardDelete(int boardIdx);
+
+	FileDto selectFileInfo(int idx, int boardIdx);
 
 }

@@ -49,7 +49,10 @@ public class FileUtils {
 			for(MultipartFile multipartFile : list) {
 				// 파일이 있다면
 				if(multipartFile.isEmpty() == false) {
+					
+					// 확장자로 인한 처리를 하고 싶어서 만든 부분
 					String contentType = multipartFile.getContentType(); // 타입을 가져옴
+					
 					// 확장자가 없다면
 					if(ObjectUtils.isEmpty(contentType)) {
 						break;
@@ -70,6 +73,7 @@ public class FileUtils {
 					// 새 파일 이름
 					String newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					
+					// DB에 저장할 정보들
 					FileDto boardFile = new FileDto();
 					boardFile.setBoardIdx(boardIdx);
 					boardFile.setFileSize(multipartFile.getSize());
@@ -81,7 +85,7 @@ public class FileUtils {
 					
 					// 파일 예외처리
 					try {
-						multipartFile.transferTo(file);
+						multipartFile.transferTo(file); // 실제 파일 만들어 저장 ( 가장중요 )
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
 					} catch (IOException e) {

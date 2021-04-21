@@ -19,13 +19,13 @@
 	<logger name="board" level="DEBUG" appender-ref="console" />
 	
 	<!--  SQL보여주기 -->
-	<logger name="jdbc.sqlonly" level="INFO" appender-ref="console.infolog" />
+	<logger name="jdbc.sqlonly" level="DEBUG" appender-ref="console.infolog" />
 	
 	<!--  조회 결과를 테이블로 보여주기  -->
 	<logger name="jdbc.resultsettable" level="INFO" appender-ref="console.infolog" />
 	
 	<!--  root 로거 -->
-	<root revel="DEBUG">
+	<root revel="INFO">
 		<appender-ref ref="console" />
 	</root>
 	

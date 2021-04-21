@@ -75,6 +75,7 @@
 			CREATE_DATE
 		)
 		<!-- 여러 파일을 insert -->
+		<!-- A : 서브쿼리 -->
 		SELECT file_seq.nextval, A.* FROM(
 			<foreach item="item" collection="list" separator="UNION ALL">
 				SELECT #{item.boardIdx} as board_idx,

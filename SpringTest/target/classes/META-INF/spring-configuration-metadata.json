@@ -11,6 +11,12 @@
       "type": "com.zaxxer.hikari.HikariConfig",
       "sourceType": "kr.inhatc.spring.configuration.DataBaseConfiguration",
       "sourceMethod": "public com.zaxxer.hikari.HikariConfig hikariConfig() "
+    },
+    {
+      "name": "spring.jpa",
+      "type": "java.util.Properties",
+      "sourceType": "kr.inhatc.spring.configuration.DataBaseConfiguration",
+      "sourceMethod": "public java.util.Properties hibernateConfig() "
     }
   ],
   "properties": [

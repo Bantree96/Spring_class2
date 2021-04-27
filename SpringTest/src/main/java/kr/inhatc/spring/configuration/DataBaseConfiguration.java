@@ -1,6 +1,7 @@
 package kr.inhatc.spring.configuration;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -74,4 +75,16 @@ public class DataBaseConfiguration {
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+	
+	/**
+	 * JPA 설정
+	 * JPA 설정 빈 등록
+	 * @return
+	 */
+	@Bean
+	@ConfigurationProperties(prefix = "spring.jpa")
+	public Properties hibernateConfig() {
+		return new Properties();
+	}
+	
 }

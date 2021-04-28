@@ -78,7 +78,7 @@ public class DataBaseConfiguration {
 	
 	/**
 	 * JPA 설정
-	 * JPA 설정 빈 등록
+	 * JPA 설정 Bean 등록
 	 * @return
 	 */
 	@Bean

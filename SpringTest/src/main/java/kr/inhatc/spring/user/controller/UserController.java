@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -62,4 +63,38 @@ public class UserController {
 		return "/user/test2";
 	}
 	*/
+	
+	
+	@RequestMapping(value = "/userInsert", method=RequestMethod.GET)
+	public String userWrite() {
+		return "/user/userWrite";
+	}
+	
+	@RequestMapping(value = "/userInsert", method=RequestMethod.POST)
+	public String userInsert(Users user) {
+		userService.saveUsers(user);
+		return "redirect:/user/userList";
+	}
+	
+	// userDetail
+	@RequestMapping(value = "/userDetail/{id}", method=RequestMethod.GET)
+	public String userDetail(@PathVariable("id") String id, Model model) {
+		Users user = userService.userDetail(id);
+		model.addAttribute("user", user);
+		System.out.println("================>"+user);
+		return "/user/userDetail";
+	}
+	
+	@RequestMapping(value = "/userUpdate", method=RequestMethod.POST)
+	public String userUpdate(Users user) {
+		userService.saveUsers(user);
+		return "redirect:/user/userList";
+	}
+	
+	@RequestMapping(value = "/userDelete/{id}", method=RequestMethod.GET)
+	public String userDelete(@PathVariable("id") String id) {
+		userService.userDelete(id);
+		return "redirect:/user/userList";
+	}
+	
 }

@@ -8,4 +8,9 @@ public interface UserService {
 
 	List<Users> userList();
 
+	void saveUsers(Users user);
+
+	Users userDetail(String id);
+
+	void userDelete(String id);
 }

@@ -1,0 +1,52 @@
+<!-- 
+	boardDetail.html
+	게시판 상세 폼
+ -->
+<!DOCTYPE html>
+<!-- 타임리프 네임스페이스 세팅 -->
+<html lang='ko' xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사용자 상세</title>
+<!-- 타임리프에서 css주는법 -->
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="container">
+		<h1>사용자 상세</h1>
+		
+		<form id="frm" name="frm" method="POST" action="/user/userUpdate">
+			<table class="board_detail">
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" id="id" name="id" th:value="${user.id}" readonly="readonly"/></td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input type="text" id="pw" name="pw" th:value="${user.pw}"/></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" id="name" name="name" th:value="${user.name}"/></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="email" id="email" name="email" th:value="${user.email}"/></td>
+				</tr>
+				<tr>
+					<td>권한</td>
+					<td><input type="text" id="role" name="role" th:value="${user.role}"/></td>
+				</tr>
+			</table>
+			<input type="submit" id="submit" value="수정" class="btn" />
+			<button>
+				<!-- 삭제는 delete로 restful하게 처리할 수도 있지만. 아니라면 get으로 해야함 -->
+				<a href="/user/userDelete/" th:attrappend="href=${user.id}" >삭제</a>
+			</button>
+			<button>
+				<a href="/user/userList">리스트</a>
+			</button>
+		</form>
+			
+</body>
+</html>

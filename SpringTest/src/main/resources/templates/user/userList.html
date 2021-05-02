@@ -14,9 +14,10 @@
 			<colgroup>
 				<col width="20%" />
 				<col width="20%" />
+				<col width="10%" />
 				<col width="20%" />
 				<col width="20%" />
-				<col width="20%" />
+				<col width="10%" />
 				
 			</colgroup>
 			<thead>
@@ -25,6 +26,7 @@
 					<th scope="col">패스워드</th>
 					<th scope="col">이름</th>
 					<th scope="col">이메일</th>
+					<th scope="col">권한</th>
 					<th scope="col">가입일</th>
 				</tr>
 			</thead>
@@ -32,10 +34,14 @@
 				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
 				<tr	th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
-					<td th:text="${vo.id}"></td>
+					<td>
+						<!-- restful한 방식으로 a -->
+						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
+					</td>
 					<td th:text="${vo.pw}"></td>
 					<td th:text="${vo.name}"></td>
 					<td th:text="${vo.email}"></td>
+					<td th:text="${vo.role}"></td>
 					<td th:text="${vo.joinDate}"></td>
 					
 				</tr>

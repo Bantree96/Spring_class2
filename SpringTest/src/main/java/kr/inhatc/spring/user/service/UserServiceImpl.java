@@ -34,4 +34,28 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	@Override
+	public void saveUsers(Users user) {
+		userRepository.save(user);
+	}
+
+	@Override
+	public Users userDetail(String id) {
+		// id를 찾아 optional 객체로 불러옴
+		Optional<Users> optional = userRepository.findById(id);
+		if(optional.isPresent()) {
+			Users user = optional.get();
+			return user;
+		} else {
+			throw new NullPointerException();
+		}
+	}
+
+	@Override
+	public void userDelete(String id) {
+		userRepository.deleteById(id);
+	}
+
+
+
 }

@@ -64,7 +64,7 @@ public class UserController {
 	}
 	*/
 	
-	
+	// userInsert
 	@RequestMapping(value = "/userInsert", method=RequestMethod.GET)
 	public String userWrite() {
 		return "/user/userWrite";
@@ -78,6 +78,7 @@ public class UserController {
 	
 	// userDetail
 	@RequestMapping(value = "/userDetail/{id}", method=RequestMethod.GET)
+	// @PathVariable : 경로로 넘어온것을 변수로 사용하고싶을때 사용한다.
 	public String userDetail(@PathVariable("id") String id, Model model) {
 		Users user = userService.userDetail(id);
 		model.addAttribute("user", user);

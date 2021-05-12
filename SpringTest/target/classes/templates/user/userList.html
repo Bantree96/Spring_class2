@@ -35,8 +35,12 @@
 				<tr	th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
 					<td>
-						<!-- restful한 방식으로 a -->
+						<!-- RESTful한 방식으로 a -->
+						<!-- 
 						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
+						 -->
+						<!--  위 방식보다 아래 방식이 훨씬 간단하다. -->
+						<a th:href="@{/user/userDetail/{id}(id=${vo.id})}" th:text="${vo.id}"></a>
 					</td>
 					<td th:text="${vo.pw}"></td>
 					<td th:text="${vo.name}"></td>

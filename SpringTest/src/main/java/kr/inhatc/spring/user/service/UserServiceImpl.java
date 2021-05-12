@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Users userDetail(String id) {
 		// id를 찾아 optional 객체로 불러옴
+		// 여러개면 리스트로 받아온다.
+		// return은 있거나 없거나
 		Optional<Users> optional = userRepository.findById(id);
 		if(optional.isPresent()) {
 			Users user = optional.get();

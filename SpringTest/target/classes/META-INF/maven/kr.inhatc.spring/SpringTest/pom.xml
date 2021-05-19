@@ -28,11 +28,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- 타임리프 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
+		<!-- 타임리프 레이아웃  -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<!--<version>2.3.0</version>-->
+		</dependency>
+		
 		<!-- 소스 갱신되면 자동 새로고침 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

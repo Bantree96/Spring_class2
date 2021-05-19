@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<!-- 타임리프 네임스페이스 세팅 -->
-<html lang='ko' xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 리스트</title>
-<!-- 타임리프에서 css주는법 -->
-<link rel="stylesheet" th:href="@{/css/style.css}"></link>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+
 	<div class="container">
 		<h1>사용자 리스트 페이지</h1>
-		<table class="board_list">
-			<colgroup>
-				<col width="20%" />
-				<col width="20%" />
-				<col width="10%" />
-				<col width="20%" />
-				<col width="20%" />
-				<col width="10%" />
-				
-			</colgroup>
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th scope="col">아이디</th>
@@ -32,22 +29,20 @@
 			</thead>
 			<tbody>
 				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
-				<tr	th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
 					<td>
-						<!-- RESTful한 방식으로 a -->
-						<!-- 
+						<!-- RESTful한 방식으로 a --> <!-- 
 						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
-						 -->
-						<!--  위 방식보다 아래 방식이 훨씬 간단하다. -->
-						<a th:href="@{/user/userDetail/{id}(id=${vo.id})}" th:text="${vo.id}"></a>
+						 --> <!--  위 방식보다 아래 방식이 훨씬 간단하다. --> <a
+						th:href="@{/user/userDetail/{id}(id=${vo.id})}" th:text="${vo.id}"></a>
 					</td>
 					<td th:text="${vo.pw}"></td>
 					<td th:text="${vo.name}"></td>
 					<td th:text="${vo.email}"></td>
 					<td th:text="${vo.role}"></td>
 					<td th:text="${vo.joinDate}"></td>
-					
+
 				</tr>
 				<!-- unless = else -->
 				<tr th:unless="${#lists.size(list)} > 0">
@@ -55,9 +50,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="/user/userInsert" class="btn">사용자 추가</a>
 		
+		<a href="/user/userInsert" class="btn btn-secondary">사용자 추가</a>
+
 	</div>
-	
-</body>
+
+</div>
 </html>

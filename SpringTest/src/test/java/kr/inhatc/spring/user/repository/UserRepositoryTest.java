@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import kr.inhatc.spring.user.entitiy.Users;
+import kr.inhatc.spring.user.entity.Users;
 
 @SpringBootTest		// 필수로 넣어 줘야한다.
 class UserRepositoryTest {

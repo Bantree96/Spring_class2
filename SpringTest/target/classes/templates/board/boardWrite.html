@@ -1,0 +1,36 @@
+<!-- 
+	boardWrite
+	게시판 작성 폼
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<title>게시판 작성</title>
+<div layout:fragment="content">
+	<div class="container">
+		<h1>게시판 작성</h1>
+		<form id="frm" name="frm" method="POST" action="/board/boardInsert"
+			enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="title" class="form-label">제목</label> <input
+					type="text" id="title" name="title" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label for="createId" class="form-label">작성자</label> <input
+					type="text" id="createId" name="createId" class="form-control" />
+			</div>
+			
+			<div class="mb-3">
+				<textarea id="contents" name="contents" class="form-control"></textarea>
+			</div>
+			<div class="mb-3 ">
+				<input type="file" id="files" name="files" multiple="multiple" />
+			</div>
+			<button type="submit" class="btn btn-primary">저장</button>
+		</form>
+	</div>
+</div>
+
+</html>

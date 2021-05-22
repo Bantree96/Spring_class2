@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.inhatc.spring.user.entitiy.Users;
+import kr.inhatc.spring.board.entity.Board;
+import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -72,10 +73,12 @@ public class UserController {
 	
 	@RequestMapping(value = "/userInsert", method=RequestMethod.POST)
 	public String userInsert(Users user) {
+		System.out.println("================>"+user);
 		userService.saveUsers(user);
 		return "redirect:/user/userList";
 	}
 	
+
 	// userDetail
 	@RequestMapping(value = "/userDetail/{id}", method=RequestMethod.GET)
 	// @PathVariable : 경로로 넘어온것을 변수로 사용하고싶을때 사용한다.

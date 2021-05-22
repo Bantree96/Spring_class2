@@ -45,37 +45,6 @@ public class DataBaseConfiguration {
 		return dataSource;
 	}
 	
-	// sql문을 보관하기 위한 sql팩토리 생성
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource);
-		
-		// mapper연결 : mapper란? 예를들어 마이바티스라고 치면 마이바티스의 위치정보?
-		sqlSessionFactoryBean.setMapperLocations(
-			appContext.getResources("classpath:/mapper/**/sql-*.xml") 	// **은 뭐가 올지 모름
-		);
-		
-		// 마이바티스에 대한 설정 추가
-		sqlSessionFactoryBean.setConfiguration(myBatisConfig());
-		
-		// .getObject로 하면 sessionfactory로 리턴
-		return sqlSessionFactoryBean.getObject();
-		
-	}
-	
-	@Bean
-	@ConfigurationProperties(prefix = "mybatis.configuration")
-	public org.apache.ibatis.session.Configuration myBatisConfig(){
-		return new org.apache.ibatis.session.Configuration(); 
-	}
-	
-	// sql던지는걸 도와줌
-	@Bean
-	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-		return new SqlSessionTemplate(sqlSessionFactory);
-	}
-	
 	/**
 	 * JPA 설정
 	 * JPA 설정 Bean 등록

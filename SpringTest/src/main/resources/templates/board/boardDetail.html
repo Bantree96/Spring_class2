@@ -11,7 +11,7 @@
 <div layout:fragment="content">
 	<div class="container">
 		<h1>게시판 상세</h1>
-		<form id="frm" name="frm" method="POST" class="row g-3">
+		<form id="frm" name="frm" method="POST" class="row g-3" action="/board/boardUpdate">
 		  <div class="col-md-6">
 		    <label class="form-label">제목</label>
 		    <input type="text" name="title" class="form-control" th:value="${board.title}" >
@@ -35,39 +35,18 @@
 		
 			<!-- boardIdx hidden 처리 -->
 			<input type="hidden" name="boardIdx" th:value="${board.boardIdx}" />
+	
+			<input type="submit" id="submit" value="수정" class="btn btn-primary"/>
+		
 		</form>
+	
+		<!-- 삭제는 delete로 restful하게 처리할 수도 있지만. 아니라면 get으로 해야함 -->
+		<a href="/board/boardDelete/" th:attrappend="href=${board.boardIdx}" class="btn btn-primary">삭제</a>
 
-		<!-- 버튼  -->
-		<input type="button" id="list" value="목록" class="btn btn-primary" />
-	 	<input type="button" id="edit" value="수정" class="btn btn-primary" /> 
-		<input type="button" id="delete" value="삭제" class="btn btn-primary" />
+		<a href="/board/boardList" class="btn btn-primary">리스트</a>
+
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			// 이건 a태그 쓰는게 더 나음
-			$("#list").on("click", function() {
-				location.href = "/board/boardList";
-			});
-
-			// 같은 form에서 서로 다른 동작(action)을 하기 위해 JS로 처리했다. -> 수정, 삭제
-			$("#edit").on("click", function() {
-				alert("글이 수정 되었습니다.");
-				// form을 전송 하는 부분
-				let frm = $("#frm")[0]; // form의 id를 찾음. [0]은 없어도됨
-				frm.action = "/board/boardUpdate"; // form의 action 세팅
-				frm.submit() // form submit
-			});
-
-			$("#delete").on("click", function() {
-				alert("글이 삭제 되었습니다.");
-				// form을 전송 하는 부분
-				let frm = $("#frm")[0];
-				frm.action = "/board/boardDelete";
-				frm.submit()
-			});
-
-		});
-	</script>
+	
 </div>
 
 </html>

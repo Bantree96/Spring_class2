@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import kr.inhatc.spring.board.entity.Board;
 import kr.inhatc.spring.board.repository.BoardRepository;
-import kr.inhatc.spring.user.entity.Users;
-import kr.inhatc.spring.user.repository.UserRepository;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -29,6 +27,9 @@ public class BoardServiceImpl implements BoardService{
 		Optional<Board> optional = boardRepository.findById(boardIdx);
 		if(optional.isPresent()) {
 			Board board = optional.get();
+			// 조회수 +1
+			board.setHitCnt(board.getHitCnt()+1);
+			boardRepository.save(board);
 			return board;
 		} else {
 			throw new NullPointerException();
@@ -39,6 +40,11 @@ public class BoardServiceImpl implements BoardService{
 	public void saveBoard(Board board) {
 		boardRepository.save(board);
 		
+	}
+
+	@Override
+	public void boardDelete(Integer boardIdx) {
+		boardRepository.deleteById(boardIdx);
 	}
 	
 }

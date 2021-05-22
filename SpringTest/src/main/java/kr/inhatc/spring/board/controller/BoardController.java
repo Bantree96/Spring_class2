@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.inhatc.spring.board.entity.Board;
 import kr.inhatc.spring.board.service.BoardService;
-import kr.inhatc.spring.user.entity.Users;
 
 @Controller
 public class BoardController {
@@ -38,6 +37,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/board/boardInsert", method=RequestMethod.POST)
 	public String boardInsert(Board board) {
+		System.out.println("================>"+board);
 		boardService.saveBoard(board);
 		return "redirect:/board/boardList";
 	}
@@ -55,6 +55,12 @@ public class BoardController {
 	@RequestMapping(value = "/board/boardUpdate", method=RequestMethod.POST)
 	public String boardUpdate(Board board) {
 		boardService.saveBoard(board);
+		return "redirect:/board/boardList";
+	}
+	
+	@RequestMapping(value = "/board/boardDelete/{boardIdx}", method=RequestMethod.GET)
+	public String boardDelete(@PathVariable("boardIdx") Integer boardIdx) {
+		boardService.boardDelete(boardIdx);
 		return "redirect:/board/boardList";
 	}
 }

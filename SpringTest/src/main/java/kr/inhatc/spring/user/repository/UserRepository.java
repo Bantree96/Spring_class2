@@ -12,7 +12,7 @@ import kr.inhatc.spring.user.entity.Users;
 // CrudRepository보다 JpaRepository를 쓰는게 더 좋다. 
 // 사용 할 수 있는게 많음
 // CrudRepository<테이블명, ID의 타입값>
-public interface UserRepository extends JpaRepository<Users, String> {
+public interface UserRepository extends CrudRepository<Users, String> {
 
 	List<Users> findAllByOrderByIdDesc();
 

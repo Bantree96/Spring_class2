@@ -20,9 +20,7 @@ import lombok.ToString;
 @Table(name = "users") 	// 테이블 명 users로 지정
 @NoArgsConstructor 		// 디폴트 생성자
 @AllArgsConstructor		// 전체 컬럼 생성자
-//@Data 				// get,set
-@Getter				
-@ToString
+@Data 				// get,set
 @Builder				// 객체생성을 도와주는 도구
 public class Users {
 	

@@ -5,31 +5,44 @@
 <title>게시판 작성</title>
 <div layout:fragment="content">
 	<div class="container">
-		<h2>사용자 등록</h2>
-		<form id="frm" name="frm" method="post" action="/user/userInsert">
-			<div class="mb-3">
-				<label for="id" class="form-label">아이디</label>
-				<input type="text" id="id" name="id" class="form-control" />
+		<main>
+			<div class="py-5 text-center">
+				<h2>사용자 등록</h2>
 			</div>
-			<div class="mb-3">
-				<label for="id" class="form-label">패스워드</label>
-				<input type="text" id="pw" name="pw" class="form-control"/>
+			
+			<div class="col-md-12 col-lg-12">
+				<form id="frm" name="frm" method="post" action="/user/userInsert">	
+				<div class="row g-3">
+					<div class="col-sm-6">
+						<label for="id" class="form-label">아이디</label> 
+						<input type="text" id="id" name="id" class="form-control" />
+					</div>
+					<div class="col-sm-6">
+						<label for="id" class="form-label">패스워드</label>
+						<input type="text" id="pw" name="pw" class="form-control" />
+					</div>
+					<div class="col-sm-6">
+						<label for="id" class="form-label">이름</label>
+						<input type="text" id="name" name="name" class="form-control" />
+					</div>
+					<div class="col-sm-6">
+						<label for="id" class="form-label">이메일</label> 
+						<input type="text" id="email" name="email" class="form-control" />
+					</div>
+					<div class="col-sm-6">
+						<label for="id" class="form-label">권한</label> 
+						<input type="text" id="role" name="role" class="form-control" />
+					</div>
+					<div class="col-sm-12">
+						<label for="photo" class="form-label">사진</label> 
+						<input type="file" id="photo" name="photo" class="form-control" />
+					</div>
+				
+					<input type="submit" id="submit" value="저장" class="btn btn-primary" />
+				</div>
+				</form>
 			</div>
-			<div class="mb-3">
-				<label for="id" class="form-label">이름</label>
-				<input type="text" id="name" name="name" class="form-control"/>
-			</div>
-			<div class="mb-3">
-				<label for="id" class="form-label">이메일</label>
-				<input type="text" id="email" name="email" class="form-control"/>
-			</div>
-			<div class="mb-3">
-				<label for="id" class="form-label">권한</label>
-				<input type="text" id="role" name="role" class="form-control"/>
-			</div>
-			<input type="submit" id="submit" value="저장" class="btn btn-primary"/>
-		</form>
+		</main>
 	</div>
 </div>
-
 </html>

@@ -1,4 +1,26 @@
 -------------------------------------------------------------------------------
 Test set: kr.inhatc.spring.user.repository.UserRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.761 s - in kr.inhatc.spring.user.repository.UserRepositoryTest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 11.083 s <<< FAILURE! - in kr.inhatc.spring.user.repository.UserRepositoryTest
+insertTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [kr/inhatc/spring/configuration/DataBaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [kr/inhatc/spring/configuration/DataBaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: java.sql.SQLRecoverableException: IO 오류: The Network Adapter could not establish the connection
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+Caused by: java.io.IOException: Connection refused: connect, socket connect lapse 2058 ms. /127.0.0.1 1521 10000 1 true
+Caused by: java.net.ConnectException: Connection refused: connect
+
+findAllByOrderByIdDescTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [kr/inhatc/spring/configuration/DataBaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [kr/inhatc/spring/configuration/DataBaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: IO 오류: The Network Adapter could not establish the connection
+Caused by: java.sql.SQLRecoverableException: IO 오류: The Network Adapter could not establish the connection
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+Caused by: java.io.IOException: Connection refused: connect, socket connect lapse 2039 ms. /127.0.0.1 1521 10000 1 true
+Caused by: java.net.ConnectException: Connection refused: connect
+

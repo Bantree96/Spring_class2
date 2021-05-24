@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.user.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
+import kr.inhatc.spring.user.repository.FileRepository;
 import kr.inhatc.spring.user.repository.UserRepository;
 import kr.inhatc.spring.utils.FileUtils;
 
@@ -20,22 +21,13 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	
 	@Autowired
+	FileRepository fileRepository;
+	
+	@Autowired
 	private FileUtils fileUtils;
 	
 	@Override
 	public List<Users> userList() {
-		// findAll : List로 다 잡아온다.
-		// userRepository.findAll()
-		
-		// findById : 특정 ID로 잡아온다. -> ID의 기준은 무엇?
-		/*
-		Optional<Users> result = userRepository.findById("");
-		if(result.isPresent()) {
-			Users user = result.get();
-			user.getEmail();
-		}
-		*/
-		
 		// query를 알아서 만들어주는 부분
 		List<Users> list = userRepository.findAllByOrderByIdDesc();
 		return list;
@@ -49,9 +41,9 @@ public class UserServiceImpl implements UserService {
 		// 1. 파일 저장
 		List<FileDto> list = fileUtils.parseFileInfo(user.getId(), multipartHttpServletRequest);
 		// 2. DB 저장
-//		if(CollectionUtils.isEmpty(list) == false) {
-//			boardMapper.boardFileInsert(list);
-//		}
+		if(CollectionUtils.isEmpty(list) == false) {
+			fileRepository.saveAll(list);
+		}
 	}
 
 	@Override

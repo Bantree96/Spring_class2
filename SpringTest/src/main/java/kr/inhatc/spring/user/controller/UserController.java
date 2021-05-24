@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.service.UserService;
@@ -71,8 +72,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/userInsert", method=RequestMethod.POST)
-	public String userInsert(Users user) {
-		userService.saveUsers(user);
+	public String userInsert(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
+		userService.saveUsers(user, multipartHttpServletRequest);
 		return "redirect:/user/userList";
 	}
 	
@@ -87,8 +88,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/userUpdate", method=RequestMethod.POST)
-	public String userUpdate(Users user) {
-		userService.saveUsers(user);
+	public String userUpdate(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
+		userService.saveUsers(user, multipartHttpServletRequest);
 		return "redirect:/user/userList";
 	}
 	

@@ -5,15 +5,22 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.inhatc.spring.user.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.repository.UserRepository;
+import kr.inhatc.spring.utils.FileUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	private FileUtils fileUtils;
 	
 	@Override
 	public List<Users> userList() {
@@ -35,8 +42,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void saveUsers(Users user) {
+	public void saveUsers(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
+		System.out.println("=============>"+ multipartHttpServletRequest);
 		userRepository.save(user);
+		
+		// 1. 파일 저장
+		List<FileDto> list = fileUtils.parseFileInfo(user.getId(), multipartHttpServletRequest);
+		// 2. DB 저장
+//		if(CollectionUtils.isEmpty(list) == false) {
+//			boardMapper.boardFileInsert(list);
+//		}
 	}
 
 	@Override

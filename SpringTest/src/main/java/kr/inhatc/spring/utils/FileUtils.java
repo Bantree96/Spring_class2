@@ -27,10 +27,10 @@ public class FileUtils {
 		
 		// 파일이 업로드될 폴더 생성
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
-		ZonedDateTime current = ZonedDateTime.now(); // 현재날짜를 current로 가져옴
-		String path = "images/" + current.format(format); // images/현재날짜 폴더경로 정해줌
+		ZonedDateTime current = ZonedDateTime.now(); 		// 현재날짜를 current로 가져옴
+		String path = "src/main/webapp/resources/images/" + current.format(format); 	// images/현재날짜 폴더경로 정해줌
 		
-		File file = new File(path); // 정해준 폴더 경로에 파일 생성
+		File file = new File(path); 						// 정해준 폴더 경로에 파일 생성
 		
 		// 폴더가 없으면 폴더 생성
 		if(file.exists() == false) {

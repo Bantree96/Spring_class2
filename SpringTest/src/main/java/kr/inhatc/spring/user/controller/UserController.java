@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.inhatc.spring.user.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
+import kr.inhatc.spring.user.service.FileService;
 import kr.inhatc.spring.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -34,8 +36,12 @@ public class UserController {
 	//Log.info("===================> 리스트 수행중..."); 
 	
 	// 유저 서비스
-	private final UserService userService;
+	@Autowired
+	private UserService userService;
 	
+	// 파일 서비스
+	@Autowired
+	private FileService fileService;
 	
 	// GET(read), POST(create), PUT(update), DELETE(delete) = restful
 	// 아래 두 표현은 같다.
@@ -82,8 +88,16 @@ public class UserController {
 	// @PathVariable : 경로로 넘어온것을 변수로 사용하고싶을때 사용한다.
 	public String userDetail(@PathVariable("id") String id, Model model) {
 		Users user = userService.userDetail(id);
+		List<FileDto> file = fileService.fileDetail(id);
+		
 		model.addAttribute("user", user);
 		System.out.println("================>"+user);
+		
+		//file.get(0).setUserId("image/")
+		
+		model.addAttribute("file", file.get(0).getStoredFilePath());
+		System.out.println("================>"+file.get(0));
+		
 		return "/user/userDetail";
 	}
 	

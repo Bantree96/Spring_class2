@@ -8,5 +8,5 @@ import kr.inhatc.spring.user.entity.FileDto;
 
 public interface FileRepository extends JpaRepository<FileDto, Integer> {
 	
-	List<FileDto> findAllByOrderByIdxDesc();
+	List<FileDto> findAll();
 }

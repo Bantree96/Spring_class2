@@ -10,6 +10,8 @@ import kr.inhatc.spring.user.entity.FileDto;
 public interface FileRepository extends JpaRepository<FileDto, Integer> {
 
 	Optional<FileDto> findByUserId(String userId);
+
+	void deleteByUserId(String userId);
 	
 	
 }

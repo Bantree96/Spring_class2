@@ -1,7 +1,10 @@
 package kr.inhatc.spring.user.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,18 @@ public class FileServiceImpl implements FileService {
 		} else {
 			throw new NullPointerException();
 		}
+	}
+
+	@Override
+	@Transactional // Transaction에러를 잡아준다 * 필수 
+	public void fileDelete(FileDto file) {
+		fileRepository.deleteByUserId(file.getUserId());
+		
+		File deleteFile = new File("src/main/resources/static"+file.getStoredFilePath());
+		System.out.println("=============>" + deleteFile);
+		deleteFile.delete();
+		System.out.println("=============> 파일삭제");
+		
 	}
 
 }

@@ -9,4 +9,6 @@ import kr.inhatc.spring.user.entity.FileDto;
 public interface FileService {
 	FileDto fileDetail(String id);
 
+	void fileDelete(FileDto file);
+
 }

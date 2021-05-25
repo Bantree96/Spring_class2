@@ -110,6 +110,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/userDelete/{id}", method=RequestMethod.GET)
 	public String userDelete(@PathVariable("id") String id) {
+		FileDto file = fileService.fileDetail(id);
+		fileService.fileDelete(file);
 		userService.userDelete(id);
 		return "redirect:/user/userList";
 	}

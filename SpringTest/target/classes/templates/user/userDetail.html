@@ -35,8 +35,7 @@
 					</div>
 					<div class="col-sm-12">
 						<label for="photo" class="form-label">사진</label> 
-						<img src="C:\Users\jiwon\git\Spring_class2\SpringTest\src\main\webapp\resources\images\20210525\433542655755900.jpg" />
-						<!-- <input type="file" id="photo" name="photo" class="form-control" th:value="a"/> -->
+						<img th:src="${file.storedFilePath}" style="width:100px; height:100px;" />						
 					</div>
 					
 					<input type="submit" id="submit" value="수정" class="btn btn-primary" />

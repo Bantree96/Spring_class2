@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import kr.inhatc.spring.user.entity.FileDto;
 
 public interface FileService {
-
-	List<FileDto> fileDetail(String id);
+	FileDto fileDetail(String id);
 
 }

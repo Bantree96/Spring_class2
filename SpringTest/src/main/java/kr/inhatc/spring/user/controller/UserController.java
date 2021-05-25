@@ -88,15 +88,16 @@ public class UserController {
 	// @PathVariable : 경로로 넘어온것을 변수로 사용하고싶을때 사용한다.
 	public String userDetail(@PathVariable("id") String id, Model model) {
 		Users user = userService.userDetail(id);
-		List<FileDto> file = fileService.fileDetail(id);
+		System.out.println("================>"+id);
+
+		FileDto file = fileService.fileDetail(id);
 		
 		model.addAttribute("user", user);
 		System.out.println("================>"+user);
 		
 		//file.get(0).setUserId("image/")
+		model.addAttribute("file", file);
 		
-		model.addAttribute("file", file.get(0).getStoredFilePath());
-		System.out.println("================>"+file.get(0));
 		
 		return "/user/userDetail";
 	}

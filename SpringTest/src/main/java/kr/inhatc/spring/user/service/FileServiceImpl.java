@@ -44,4 +44,10 @@ public class FileServiceImpl implements FileService {
 		
 	}
 
+	@Override
+	public List<FileDto> fileList() {
+		List<FileDto> list = fileRepository.findAllByOrderByUserIdDesc();
+		return list;
+	}
+
 }

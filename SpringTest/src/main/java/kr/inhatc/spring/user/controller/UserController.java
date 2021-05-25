@@ -49,8 +49,11 @@ public class UserController {
 	@GetMapping("/userList")
 	public void userList(Model model) {
 		List<Users> list = userService.userList(); 
-		//System.out.println("============> 크기" + list.size());
 		model.addAttribute("list", list);
+		
+		List<FileDto> file = fileService.fileList();
+		System.out.println("==================> : "+file);
+		model.addAttribute("file", file);
 		//return "user/userList";
 	}
 	

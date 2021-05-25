@@ -19,6 +19,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
+					<th scope="col">썸네일</th>
 					<th scope="col">아이디</th>
 					<th scope="col">패스워드</th>
 					<th scope="col">이름</th>
@@ -28,8 +29,12 @@
 				</tr>
 			</thead>
 			<tbody>
+
 				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}">
+					<td>
+						<img th:src="${file[i.index].storedFilePath}" style="width:100px; height:100px;"></td>
+					</td>
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
 					<td>
 						<!-- RESTful한 방식으로 a --> <!-- 
@@ -42,12 +47,15 @@
 					<td th:text="${vo.email}"></td>
 					<td th:text="${vo.role}"></td>
 					<td th:text="${vo.joinDate}"></td>
-
+					
 				</tr>
+				
+				
 				<!-- unless = else -->
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="5">조회된 결과가 없습니다.</td>
 				</tr>
+				
 			</tbody>
 		</table>
 		

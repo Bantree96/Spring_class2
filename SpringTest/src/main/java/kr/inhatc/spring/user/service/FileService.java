@@ -11,4 +11,6 @@ public interface FileService {
 
 	void fileDelete(FileDto file);
 
+	List<FileDto> fileList();
+
 }

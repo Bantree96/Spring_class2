@@ -33,7 +33,7 @@
 				<!-- if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력-->
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}">
 					<td>
-						<img th:src="${file[i.index].storedFilePath}" style="width:100px; height:100px;"></td>
+						<img th:src="${file[i.index].storedFilePath}" style="width:100px; height:100px;" /></td>
 					</td>
 					<!-- dto>BoardDto에 있는 내용을 가져와 출력가능 -->
 					<td>
@@ -49,8 +49,6 @@
 					<td th:text="${vo.joinDate}"></td>
 					
 				</tr>
-				
-				
 				<!-- unless = else -->
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="5">조회된 결과가 없습니다.</td>
@@ -58,6 +56,25 @@
 				
 			</tbody>
 		</table>
+		<nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center">
+          <li class="page-item" th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
+                    <a class="page-link" href="#"
+                        th:href="@{/user/userList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
+                        tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            <li class="page-item" 
+            th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
+            th:each="i : ${#numbers.sequence(startPage, endPage)}">
+            <a class="page-link" href="#" 
+            th:href="@{/user/userList(page=${i - 1}, searchText = ${param.searchText})}"
+            th:text="${i}">1</a></li>
+            <li class="page-item" 
+            th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
+            <a class="page-link" href="#" 
+            th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">Next</a></li>
+         </ul>
+     	 </nav>
 		
 		<a href="/user/userWrite" class="btn btn-secondary">사용자 추가</a>
 

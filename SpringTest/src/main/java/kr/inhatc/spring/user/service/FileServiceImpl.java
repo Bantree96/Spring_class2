@@ -20,12 +20,12 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public FileDto fileDetail(String UserId) {
-		System.out.println("================>2 : "+UserId);
+		//System.out.println("================>2 : "+UserId);
 		Optional<FileDto> optional = fileRepository.findByUserId(UserId);
-		System.out.println("================>3 : "+optional);
+		//System.out.println("================>3 : "+optional);
 		if(optional.isPresent()) {
 			FileDto file = optional.get();
-			System.out.println("================>4 : "+file);
+			//System.out.println("================>4 : "+file);
 			return file;
 		} else {
 			throw new NullPointerException();
@@ -38,9 +38,9 @@ public class FileServiceImpl implements FileService {
 		fileRepository.deleteByUserId(file.getUserId());
 		
 		File deleteFile = new File("src/main/resources/static"+file.getStoredFilePath());
-		System.out.println("=============>" + deleteFile);
+		//System.out.println("=============>" + deleteFile);
 		deleteFile.delete();
-		System.out.println("=============> 파일삭제");
+		//System.out.println("=============> 파일삭제");
 		
 	}
 

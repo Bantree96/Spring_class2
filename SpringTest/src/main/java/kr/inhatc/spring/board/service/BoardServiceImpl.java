@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kr.inhatc.spring.board.entity.Board;
 import kr.inhatc.spring.board.repository.BoardRepository;
+import kr.inhatc.spring.user.entity.Users;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -45,6 +48,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void boardDelete(Integer boardIdx) {
 		boardRepository.deleteById(boardIdx);
+	}
+
+	@Override
+	public Page<Board> boardPageList(Pageable pageable, String searchText) {
+		Page<Board> list = boardRepository.findByTitleContainingOrContentsContaining(searchText, searchText, pageable);
+		
+		return list;
 	}
 	
 }

@@ -7,42 +7,62 @@
 	<div class="container">
 		<main>
 			<div class="py-5 text-center">
-				<h2>사용자 등록</h2>
+				<h2>이력서</h2>
 			</div>
 			
 			<div class="col-md-12 col-lg-12">
 				<form id="frm" name="frm" method="post" action="/user/userInsert" enctype="multipart/form-data">	
-				<div class="row g-3">
-					<div class="col-sm-6">
-						<label for="id" class="form-label">아이디</label> 
-						<input type="text" id="id" name="id" class="form-control" th:value="${user.id}" readonly="readonly"/>
+				<div class="row g-3 mb-3">
+					<div class="col-sm-3">
+						<img th:src="${file.storedFilePath}" class="img-thumbnail" />
 					</div>
-					<div class="col-sm-6">
-						<label for="id" class="form-label">패스워드</label>
-						<input type="text" id="pw" name="pw" class="form-control" th:value="${user.pw}"/>
+					<div class="col-sm-9">
+						<div class="row g-3 mb-3">
+							<div class="col-4">
+								<div class="form-floating">
+									<input type="text" id="id" name="id" class="form-control" placeholder="아이디" th:value="${user.id}" readonly="readonly"/>
+									<label for="id" class="floatingInput">아이디</label> 
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="form-floating">
+									<input type="text" id="pw" name="pw" class="form-control" placeholder="비밀번호" th:value="${user.pw}"/>
+									<label for="pw" class="floatingInput">비밀번호</label>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="form-floating">
+									<input type="text" id="name" name="name" class="form-control" placeholder="이름" th:value="${user.name}"/>
+									<label for="name" class="floatingInput">이름</label>
+								</div>
+							</div>
+						</div>
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<div class="form-floating">
+									<input type="text" id="email" name="email" class="form-control" placeholder="이메일" th:value="${user.email}"/>
+									<label for="email" class="floatingInput">이메일</label> 
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-floating">
+									<select th:field=${user.role} name="role" class="form-select" aria-label="권한" >
+										<option value="ROLE_USER">사용자</option>
+										<option value="ROLE_ADMIN">관리자</option>
+									</select>
+									<label for="role" class="floatingInput">권한</label> 
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="col-sm-6">
-						<label for="id" class="form-label">이름</label>
-						<input type="text" id="name" name="name" class="form-control" th:value="${user.name}"/>
-					</div>
-					<div class="col-sm-6">
-						<label for="id" class="form-label">이메일</label> 
-						<input type="text" id="email" name="email" class="form-control" th:value="${user.email}"/>
-					</div>
-					<div class="col-sm-6">
-						<label for="id" class="form-label">권한</label> 
-						<input type="text" id="role" name="role" class="form-control" th:value="${user.role}"/>
-					</div>
-					<div class="col-sm-12">
-						<label for="photo" class="form-label">사진</label> 
-						<img th:src="${file.storedFilePath}" style="width:100px; height:100px;" />						
-					</div>
-					
+				</div>
+				<div class="mx-auto text-center" style="width:auto">
 					<input type="submit" id="submit" value="수정" class="btn btn-primary" />
 					<!-- 삭	제는 delete로 restful하게 처리할 수도 있지만. 아니라면 get으로 해야함 -->
 					<a href="/user/userDelete/" th:attrappend="href=${user.id}" class="btn btn-primary" >삭제</a>
 					<a href="/user/userList" class="btn btn-primary" >리스트</a>
 				</div>
+					
 				</form>
 			</div>
 		</main>

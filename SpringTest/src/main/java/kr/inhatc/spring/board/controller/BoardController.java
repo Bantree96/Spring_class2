@@ -3,15 +3,20 @@ package kr.inhatc.spring.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.inhatc.spring.board.entity.Board;
 import kr.inhatc.spring.board.service.BoardService;
+import kr.inhatc.spring.user.entity.Users;
 
 @Controller
 public class BoardController {
@@ -22,11 +27,26 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping("/board/boardList")
-	public String boardList(Model model) {
-		List<Board> list = boardService.boardList();
+//	@GetMapping("/board/boardList")
+//	public String boardList(Model model) {
+//		List<Board> list = boardService.boardList();
+//		model.addAttribute("list", list);
+//		return "board/boardList";
+//	}
+	@GetMapping("/board/boardList")
+	public void boardList(Model model,
+			@PageableDefault(size=1)Pageable pageable,								// 페이징 초기값 2 지정
+			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
+		Page<Board> list = boardService.boardPageList(pageable, searchText);
+		
+		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
+		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("list", list);
-		return "board/boardList";
+
+		//return "board/boardList";
 	}
 
 	// boardInsert

@@ -44,9 +44,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private UserRepository userRepository;
-	
 	// 파일 서비스
 	@Autowired
 	private FileService fileService;

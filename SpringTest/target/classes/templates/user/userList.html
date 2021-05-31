@@ -15,7 +15,10 @@
 <div layout:fragment="content">
 
 	<div class="container">
-		<h1>사용자 리스트 페이지</h1>
+		<div class="py-5 text-center">
+			<h1>사용자 리스트</h1>
+		</div>
+
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -64,7 +67,7 @@
           <li class="page-item" th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
                     <a class="page-link" href="#"
                         th:href="@{/user/userList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
-                        tabindex="-1" aria-disabled="true">Previous</a>
+                        tabindex="-1" aria-disabled="true">이전</a>
                 </li>
             <li class="page-item" 
             th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
@@ -75,12 +78,14 @@
             <li class="page-item" 
             th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
             <a class="page-link" href="#" 
-            th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">Next</a></li>
+            th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">다음</a></li>
          </ul>
      	 </nav>
 		
-		<a href="/user/userWrite" class="btn btn-secondary">사용자 추가</a>
-
+		<div class="float-end">
+			<a href="/user/userWrite" class="btn btn-secondary text-end">사용자 추가</a>
+		</div>
+		
 	</div>
 
 </div>

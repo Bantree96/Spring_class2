@@ -6,14 +6,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 // WebSecurityConfigurerAdapter는 추상클래스
 // 추상메소드를 불러와 사용한다.
-// @EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
-		security.authorizeRequests().antMatchers("/", "/login/**", "/user/**").permitAll(); 							// root는 누구나 접근 가능
-		security.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN"); 							// ROLE_ADMIN 사용자 user밑에 다 접근 가능
-		security.authorizeRequests().antMatchers("/user/**", "/board/**").hasAnyRole("ADMIN","MEMBER"); // ADMIN,MEMBER 사용자 user,board에 접근 가능
+		security.authorizeRequests().antMatchers("/","/user/**","/board/**").permitAll(); 							// root는 누구나 접근 가능
+		//security.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN"); 							// ROLE_ADMIN 사용자 user밑에 다 접근 가능
+		//security.authorizeRequests().antMatchers("/user/**", "/board/**").hasAnyRole("ADMIN","MEMBER"); // ADMIN,MEMBER 사용자 user,board에 접근 가능
 		
 		// RESTfull 을 사용하기 위해서는 비활성화 (중요함!!) 
 		security.csrf().disable(); 

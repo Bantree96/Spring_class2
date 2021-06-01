@@ -15,7 +15,8 @@ import kr.inhatc.spring.user.entity.Users;
 // 사용 할 수 있는게 많음
 // CrudRepository<테이블명, ID의 타입값>
 public interface UserRepository extends JpaRepository<Users, String> {
-
+	
+	// 일반 리스트 만들어 불러오기
 	List<Users> findAllByOrderByIdDesc();
 
 	// 페이징

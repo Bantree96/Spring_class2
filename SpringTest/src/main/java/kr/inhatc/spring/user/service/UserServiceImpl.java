@@ -70,6 +70,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Page<Users> userPageList(Pageable pageable, String searchText) {
+		int batch = 2;
+		int startIdx = 0;
 		Page<Users> list = userRepository.findByIdContainingOrNameContaining(searchText, searchText, pageable);
 		
 		return list;

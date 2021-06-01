@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +35,6 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class UserController {
 	
-	// logger
-	//private Logger log = LoggerFactory.getLogger(this.getClass());
-	
-	// Log
-	//Log.info("===================> 리스트 수행중..."); 
-	
 	// 유저 서비스
 	@Autowired
 	private UserService userService;
@@ -47,6 +42,9 @@ public class UserController {
 	// 파일 서비스
 	@Autowired
 	private FileService fileService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	// GET(read), POST(create), PUT(update), DELETE(delete) = restful
 	// 아래 두 표현은 같다.
@@ -68,8 +66,10 @@ public class UserController {
 			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
 		Page<Users> list = userService.userPageList(pageable, searchText); 
 		
-		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
-		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		int startPage = Math.max(list.getPageable().getPageNumber()+1, list.getPageable().getPageNumber()-7);
+		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 5);
+		//int startPage = list.getPageable().getPageNumber()-1*list.getTotalPages();
+		//int endPage = Math.min(startPage+5, list.getTotalPages());
 		
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -96,6 +96,10 @@ public class UserController {
 	// 유저 추가
 	@RequestMapping(value = "/userInsert", method=RequestMethod.POST)
 	public String userInsert(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
+		// 비밀번호 암호화
+		String pw = encoder.encode(user.getPw());
+		user.setPw(pw);
+		
 		userService.saveUsers(user, multipartHttpServletRequest);
 		return "redirect:/user/userList";
 	}
@@ -120,6 +124,10 @@ public class UserController {
 	// 유저 수정
 	@RequestMapping(value = "/userUpdate", method=RequestMethod.POST)
 	public String userUpdate(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
+		// 비밀번호 암호화
+		String pw = encoder.encode(user.getPw());
+		user.setPw(pw);
+		
 		userService.saveUsers(user, multipartHttpServletRequest);
 		return "redirect:/user/userList";
 	}

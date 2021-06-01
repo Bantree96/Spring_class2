@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100">
 
 <!-- 영역 나눠 진다. -->
 <head th:replace="fragments/config :: configFragment"></head>
 
+<!-- body -->
+<body class="d-flex flex-column h-100">
+
+<!-- nav -->
 <header th:replace="fragments/menu :: menuFragment"></header>
 
-<div layout:fragment="content" ></div>
+<!-- content -->
+<div layout:fragment="content" class="flex-shrink-0"></div>
 
+<!-- footer -->
 <footer th:replace="fragments/footer :: footerFragment"></footer>
 
+</body>
 </html>

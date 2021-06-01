@@ -25,4 +25,5 @@ public class LoginController {
 	public void logout() {
 		log.info("로그아웃...");
 	}
+	
 }

@@ -5,17 +5,25 @@
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/index.css}"></link>
 </th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
-	<main>
-		<div class="container">
-		        index.html 입니다.
-		</div>
-	</main>
+<div layout:fragment="content" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column justify-content-center text-center">
+<main class="px-3 ">
+	<div class="container text-white text-deco">
+	    <h1 class="mb-3">Ai 데이터 컨테이너</h1>
+	    <p class="lead">ML/DL을 위한 데이터셋을 다운로드 받으세요</p>
+	    <p class="lead">다양한 데이터셋을 이미지 카테고리화시켜</p>
+	    <p class="lead">간단하게 판단 할 수 있습니다.</p>
+	    <p class="lead">
+	      <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+	    </p>
+	</div>
+</main>
+	
 </div>
 </html>

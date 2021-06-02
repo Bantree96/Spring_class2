@@ -6,26 +6,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/default">
+	layout:decorator="layout/default"
+	xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <title>게시판 작성</title>
 <div layout:fragment="content">
 	<div class="container">
-		<h1>게시판 작성</h1>
-		<form id="frm" name="frm" method="POST" action="/board/boardInsert">
-			<div class="mb-3">
-				<label for="title" class="form-label">제목</label> <input
-					type="text" id="title" name="title" class="form-control" />
+		
+		<div class="py-5 text-center">
+				<h2>게시글 등록</h2>
+		</div>
+		<div class="col-md-12 col-lg-12">
+			<form id="frm" name="frm" method="POST" action="/board/boardInsert">
+				<div class="mb-3">
+					<label for="title" class="form-label">제목</label>
+					<input	type="text" id="title" name="title" class="form-control" />
+				</div>
+				<div class="mb-3">
+					<label for="createId" class="form-label">작성자</label> 
+					<input type="text" id="createId" name="createId" class="form-control" />
+				</div>			
+				<div class="mb-3">
+					<label for="contens">내용</label>
+					<textarea id="contents" name="contents" class="form-control"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">저장</button>
+			</form>
 			</div>
-			<div class="mb-3">
-				<label for="createId" class="form-label">작성자</label> <input
-					type="text" id="createId" name="createId" class="form-control" />
-			</div>			
-			<div class="mb-3">
-				<label for="contens">내용</label>
-				<textarea id="contents" name="contents" class="form-control"></textarea>
-			</div>
-			<button type="submit" class="btn btn-primary">저장</button>
-		</form>
 	</div>
 </div>
 

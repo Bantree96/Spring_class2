@@ -62,14 +62,12 @@ public class UserController {
 	
 	@GetMapping("/userList")
 	public void userList(Model model,
-			@PageableDefault(size=1)Pageable pageable,								// 페이징 초기값 2 지정
+			@PageableDefault(size=3)Pageable pageable,								// 페이징 초기값 2 지정
 			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
 		Page<Users> list = userService.userPageList(pageable, searchText); 
 		
-		int startPage = Math.max(list.getPageable().getPageNumber()+1, list.getPageable().getPageNumber()-7);
-		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 5);
-		//int startPage = list.getPageable().getPageNumber()-1*list.getTotalPages();
-		//int endPage = Math.min(startPage+5, list.getTotalPages());
+		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
+		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
 		
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -125,8 +123,8 @@ public class UserController {
 	@RequestMapping(value = "/userUpdate", method=RequestMethod.POST)
 	public String userUpdate(Users user, MultipartHttpServletRequest multipartHttpServletRequest) {
 		// 비밀번호 암호화
-		String pw = encoder.encode(user.getPw());
-		user.setPw(pw);
+		//String pw = encoder.encode(user.getPw());
+		//user.setPw(pw);
 		
 		userService.saveUsers(user, multipartHttpServletRequest);
 		return "redirect:/user/userList";

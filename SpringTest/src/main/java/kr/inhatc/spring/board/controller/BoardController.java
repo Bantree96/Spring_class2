@@ -35,7 +35,7 @@ public class BoardController {
 //	}
 	@GetMapping("/board/boardList")
 	public void boardList(Model model,
-			@PageableDefault(size=1)Pageable pageable,								// 페이징 초기값 2 지정
+			@PageableDefault(size=5)Pageable pageable,								// 페이징 초기값 2 지정
 			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
 		Page<Board> list = boardService.boardPageList(pageable, searchText);
 		

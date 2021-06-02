@@ -52,7 +52,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public Page<Board> boardPageList(Pageable pageable, String searchText) {
-		Page<Board> list = boardRepository.findByTitleContainingOrContentsContaining(searchText, searchText, pageable);
+		Page<Board> list = boardRepository.findByTitleContainingOrContentsContainingOrderByBoardIdxDesc(searchText, searchText, pageable);
 		
 		return list;
 	}

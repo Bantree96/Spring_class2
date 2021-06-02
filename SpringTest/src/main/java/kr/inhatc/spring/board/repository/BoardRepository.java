@@ -14,5 +14,5 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
 	List<Board> findAllByOrderByBoardIdxDesc();
 
-	Page<Board> findByTitleContainingOrContentsContaining(String searchText, String searchText2, Pageable pageable);
+	Page<Board> findByTitleContainingOrContentsContainingOrderByBoardIdxDesc(String searchText, String searchText2, Pageable pageable);
 }

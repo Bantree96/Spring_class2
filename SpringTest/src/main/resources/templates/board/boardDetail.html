@@ -10,55 +10,42 @@
 <title>게시판 상세</title>
 <div layout:fragment="content">
 	<div class="container">
-		<h1>게시판 상세</h1>
-		<form id="frm" name="frm" method="POST" class="row g-3" action="/board/boardUpdate">
-		  <div class="col-md-6">
-		    <label class="form-label">제목</label>
-		    <input type="text" name="title" class="form-control" th:value="${board.title}" >
-		  </div>
-		  <div class="col-md-6">
-		    <label class="form-label">조회수</label>
-		    <input type="text" name="hitCnt" class="form-control" th:value="${board.hitCnt}" readonly>
-		  </div>
-		  <div class="col-md-6">
-		    <label class="form-label">작성자</label>
-		    <input type="text" name="createId" class="form-control" th:value="${board.createId}" readonly>
-		  </div>
-		  <div class="col-md-6">
-		    <label class="form-label">작성일</label>
-		    <input type="text" class="form-control" th:value="${board.createDate}" readonly>
-		  </div>
-		  <div class="col-12">
-	  		    <label class="form-label">내용</label>  
-				<textarea class="form-control" title="내용" id="contents" name="contents" th:text="${board.contents}"></textarea>
-		  </div>
-		
-			<!-- boardIdx hidden 처리 -->
-			<input type="hidden" name="boardIdx" th:value="${board.boardIdx}" />
-	
-			<input type="submit" id="submit" value="수정" class="btn btn-primary"/>
-		
-		</form>
-	
-		<!-- 삭제는 delete로 restful하게 처리할 수도 있지만. 아니라면 get으로 해야함 -->
-		<a href="/board/boardDelete/" th:attrappend="href=${board.boardIdx}" class="btn btn-primary">삭제</a>
-
-		<a href="/board/boardList" class="btn btn-primary">리스트</a>
-
+		<div class="py-5 text-center">
+			<h2>게시판 상세</h2>
+		</div>
+		<div class="col-md-12 col-lg-12">
+			<form id="frm" name="frm" method="POST" class="row g-3" action="/board/boardUpdate">
+			  <div class="col-md-6">
+			    <label class="form-label">제목</label>
+			    <input type="text" name="title" class="form-control" th:value="${board.title}" >
+			  </div>
+			  <div class="col-md-6">
+			    <label class="form-label">조회수</label>
+			    <input type="text" name="hitCnt" class="form-control" th:value="${board.hitCnt}" readonly>
+			  </div>
+			  <div class="col-md-6">
+			    <label class="form-label">작성자</label>
+			    <input type="text" name="createId" class="form-control" th:value="${board.createId}" readonly>
+			  </div>
+			  <div class="col-md-6">
+			    <label class="form-label">작성일</label>
+			    <input type="text" class="form-control" th:value="${board.createDate}" readonly>
+			  </div>
+			  <div class="col-12">
+		  		    <label class="form-label">내용</label>  
+					<textarea class="form-control" title="내용" id="contents" name="contents" th:text="${board.contents}"></textarea>
+			  </div>
+			
+				<!-- boardIdx hidden 처리 -->
+				<input type="hidden" name="boardIdx" th:value="${board.boardIdx}" />
+				<div class="mx-auto text-center" style="width:auto">
+					<input type="submit" id="submit" value="수정" class="btn btn-primary"/>
+					<!-- 삭제는 delete로 restful하게 처리할 수도 있지만. 아니라면 get으로 해야함 -->
+					<a href="/board/boardDelete/" th:attrappend="href=${board.boardIdx}" class="btn btn-primary">삭제</a>
+					<input type="button" value="목록" onclick="history.back(-1)" class="btn btn-primary"/>
+				</div>
+			</form>
+		</div>
 	</div>
-	
 </div>
-
 </html>
-
-
-<!-- 
-<div class="file_list">
-	<!-- href post방식 값 전달 
-	<a 	th:each="file : ${board.fileList}" 
-		th:href="@{/board/downloadBoardFile(idx=${file.idx}, boardIdx=${file.boardIdx})}"
-		th:text="|${file.originalFileName} (${file.fileSize}KB)|">
-	
-	</a>
-</div>
- -->

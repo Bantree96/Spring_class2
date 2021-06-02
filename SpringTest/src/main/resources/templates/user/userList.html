@@ -24,7 +24,7 @@
 				<tr>
 					<th scope="col">썸네일</th>
 					<th scope="col">아이디</th>
-					<th scope="col">패스워드</th>
+					
 					<th scope="col">이름</th>
 					<th scope="col">이메일</th>
 					<th scope="col">권한</th>
@@ -48,7 +48,7 @@
 						 --> <!--  위 방식보다 아래 방식이 훨씬 간단하다. --> <a
 						th:href="@{/user/userDetail/{id}(id=${vo.id})}" th:text="${vo.id}"></a>
 					</td>
-					<td th:text="${vo.pw}"></td>
+
 					<td th:text="${vo.name}"></td>
 					<td th:text="${vo.email}"></td>
 					<td th:text="${vo.role}"></td>

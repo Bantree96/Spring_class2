@@ -14,7 +14,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
-		security.authorizeRequests().antMatchers("/", "/user/userWrite").permitAll(); 							// root는 누구나 접근 가능
+		security.authorizeRequests().antMatchers("/", "/user/userWrite", "/user/userInsert").permitAll(); 							// root는 누구나 접근 가능
 		security.authorizeRequests().antMatchers("/user/**", "/board/**").hasRole("ADMIN"); 							// ROLE_ADMIN 사용자 user밑에 다 접근 가능
 		security.authorizeRequests().antMatchers("/board/**").hasAnyRole("ADMIN","MEMBER"); // ADMIN,MEMBER 사용자 user,board에 접근 가능
 		

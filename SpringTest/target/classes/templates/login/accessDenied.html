@@ -5,20 +5,24 @@
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="css">
-
+	<link rel="stylesheet" th:href="@{/css/signin.css}"></link>
 </th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content" class="container d-flex w-100 h-100 p-3 mx-auto flex-column justify-content-center ">
+		<main class="text-center">
+		  <form method="post" class="form-signin">
+		    <h1 class="h3 mb-3 fw-normal">권한이 없습니다.</h1>
+		
+		  
+			<input type="button" value="뒤로가기" onclick="history.back(-1)" class="w-100 btn btn-lg btn-primary"/>
 
-	<div class="container">
-		<h1> 페이지 공사중입니다. </h1>
-		<h3> 다시 로그인 하세요.</h3>
-		<a th:href="@{/login/login}" class="btn" >로그인</a>
-	</div>
+		    <p class="mt-5 mb-3 text-muted">&copy; 2021 Jiwon</p>
+		  </form>
+		</main>
 
 </div>
 </html>

@@ -24,6 +24,7 @@ public class SecurityUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Users> optional = userRepository.findById(username); // 여기서 username은 우리가 만든 사용자id
+		// isPresent : 존재한다면(값을 가져왔다면)
 		if(optional.isPresent()) {
 			Users user = optional.get();
 			return new SecurityUser(user);

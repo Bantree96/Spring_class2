@@ -3,8 +3,8 @@
 
 <header th:fragment="menuFragment">
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-auto ">
-		<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-auto ">
+		<div class="container d-flex flex-wrap">
 			<a class="navbar-brand" href="/">Ai Container</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -18,17 +18,10 @@
 					<li class="nav-item" th:classappend="${current == '2'} ? active"><a class="nav-link" href="/user/userList">사용자</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">데이터셋</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/boardList">건의게시판</a></li>
-					
 				</ul>
 				
 				
-				<!-- 검색 기능 -->
-				<form class="d-flex" method="GET">
-					<input class="form-control me-2" type="search" placeholder="Search" id="searchText"
-                  			name= "searchText"
-                  			th:value="${param.searchText}" />
-      				<button class="btn btn-outline-success mr-3" type="submit">Search</button>
-				</form>
+				
 				
 				<!-- 로그인 성공시 -->
 				<div sec:authorize="isAuthenticated()">
@@ -36,11 +29,29 @@
 				</div>
 				<!-- 로그인 아직 안할시 -->
 				<div sec:authorize="isAnonymous()">
-					<a th:href="@{/login/login}" class="btn btn-outline-primary">로그인</a>
+				<ul class="nav">
+				<a th:href="@{/login/login}" class="nav-link link-dark px-2">로그인</a>
+					<a th:href="@{/user/userWrite}" class="nav-link link-dark px-2">회원가입</a>
+					
+				</ul>
+					
 				</div>
 			</div>
 		</div>
 	</nav>
+	<!-- <div class="py-3 mb-4 border-bottom">
+		<div class="container d-flex flex-wrap justify-content-center">
+		<a class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"></a>
+		검색 기능
+		<form class="d-flex" method="GET">
+			<input class="form-control me-2" type="search" placeholder="Search" id="searchText"
+                			name= "searchText"
+                			th:value="${param.searchText}" />
+			<button class="btn btn-outline-success mr-3" type="submit">Search</button>
+		</form>
+		</div> 
+		
+	</div> -->
 	<!-- <a th:href="@{/index}">index 페이지 이동</a>-->
 </header>
 

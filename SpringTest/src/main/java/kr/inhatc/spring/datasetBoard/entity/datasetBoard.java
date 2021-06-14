@@ -26,17 +26,16 @@ import lombok.ToString;
 public class datasetBoard {
 	
 	@Id
-	@Column(name="BOARD_IDX")
+	@Column(name="DATASETBOARD_IDX")
 	// Auto시퀀스 방식
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int boardIdx;
 	private String title;
+	private String contents;
 	private int hitCnt;
 	// date 처리
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false, columnDefinition = "date default sysdate")
 	private Date createDate;
-	
-	@Column(insertable = false, updatable = false, columnDefinition = "varchar(1) default 'N'")
-	private String deleteYn;
+
 }

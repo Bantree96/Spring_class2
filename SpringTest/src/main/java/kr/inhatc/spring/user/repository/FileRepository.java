@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import kr.inhatc.spring.datasetBoard.entity.DatasetFileDto;
 import kr.inhatc.spring.user.entity.FileDto;
 
 public interface FileRepository extends JpaRepository<FileDto, Integer> {
@@ -15,6 +16,5 @@ public interface FileRepository extends JpaRepository<FileDto, Integer> {
 	void deleteByUserId(String userId);
 
 	List<FileDto> findAllByOrderByUserIdDesc();
-	
-	
+
 }

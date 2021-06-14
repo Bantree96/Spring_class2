@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<title>데이터셋 작성</title>
+<div layout:fragment="content">
+	<div class="container">
+		<main>
+			<div class="py-5 text-center">
+				<h2>데이터셋 등록</h2>
+			</div>
+			
+			<div class="col-md-12 col-lg-12">
+				<form id="frm" name="frm" method="post" action="/datasetBoard/datasetBoardInsert" enctype="multipart/form-data">
+				<div class="row g-3 mb-3">
+					<div class="col-sm-12">
+						<div class="row g-3 mb-3">
+							<div class="col-12">
+								<div class="form-floating">
+									<input type="text" id="title" name="title" class="form-control" required/>
+									<label for="title" class="floatingInput">타이틀</label> 
+								</div>
+							</div>
+							<div class="col-12" >
+								<div class="form-floating">
+									<textarea id="contents" name="contents" class="form-control" style="height:100px" required></textarea>
+									<label for="contents" class="floatingInput">내용</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<label for="photo" class="form-label">사진</label> 
+						<input type="file" id="photo" name="photo" class="form-control" required/>
+					</div>
+					<div class="col-sm-12">
+						<label for="dataset" class="form-label">데이터셋</label> 
+						<input type="file" id="dataset" name="dataset" class="form-control" required/>
+					</div>
+				</div>
+				<div class="mx-auto text-center" style="width:auto">
+					<input type="submit" id="submit" value="등록" class="btn btn-primary" />
+				</div>
+				</form>
+			</div>
+		</main>
+	</div>
+</div>
+</html>

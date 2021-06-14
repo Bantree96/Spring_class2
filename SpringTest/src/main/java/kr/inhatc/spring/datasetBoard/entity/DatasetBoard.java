@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class datasetBoard {
+public class DatasetBoard {
 	
 	@Id
 	@Column(name="DATASETBOARD_IDX")

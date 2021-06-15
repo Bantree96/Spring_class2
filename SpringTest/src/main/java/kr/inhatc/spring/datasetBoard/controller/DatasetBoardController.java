@@ -1,4 +1,4 @@
-package kr.inhatc.spring.datasetBoard.controll;
+package kr.inhatc.spring.datasetBoard.controller;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -92,6 +92,7 @@ public class DatasetBoardServiceImpl implements DatasetBoardService{
 		Optional<DatasetFileDto> optional = datasetFileRepository.findByDatasetIdx(fileId);
 		if(optional.isPresent()) {
 			DatasetFileDto file = optional.get();
+			file.setDownloadCnt(file.getDownloadCnt()+1);
 			return file;
 		} else {
 			throw new NullPointerException();

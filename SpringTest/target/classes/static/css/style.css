@@ -46,3 +46,12 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
   height:60px; 
   width:100%; 
 } */
+
+body {
+	-ms-overflow-stlye:none;
+	scrollbar-width:none;
+}
+
+body::-webkit-scrollbar {
+	display:none;
+}

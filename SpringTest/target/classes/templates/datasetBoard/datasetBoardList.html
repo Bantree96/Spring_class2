@@ -18,6 +18,14 @@
 		<div class="py-5 text-center">
 			<h1>데이터셋 리스트</h1>
 		</div>
+		<div class="container d-flex flex-wrap justify-content-center pb-5">
+		<form class="d-flex" method="GET">
+			<input class="form-control me-2" type="search" placeholder="Search" id="searchText"
+                			name= "searchText"
+                			th:value="${param.searchText}" />
+			<button class="btn btn-outline-success mr-3" type="submit">Search</button>
+		</form>
+		</div>
 		
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
@@ -25,17 +33,18 @@
          		<div th:each="thumbDto : ${thumb}" th:if="${thumbDto.datasetIdx == vo.boardIdx}">
                 	<img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${thumbDto.storedFilePath}"></a>
 				</div>
-<!-- 	            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
- -->	
 	            <div class="card-body">
 	            	<h4 th:text="${vo.title}"></h4>
 	              <p class="card-text" th:text="${vo.contents}"></p>
 	              <div class="d-flex justify-content-between align-items-center">
-	                <div class="btn-group" th:each="dto : ${file}" th:if="${dto.datasetIdx == vo.boardIdx}">
-	                	<a class="btn btn-sm btn-outline-secondary" th:href="@{'/download/'+${dto.datasetIdx}}" th:text="Download"></a>
-					</div>
-
-	                <small class="text-muted" th:text="${vo.createDate}"></small>
+	                <th:block th:each="dto : ${file}" th:if="${dto.datasetIdx == vo.boardIdx}">
+	                	<div class="btn-group">
+           		        	<a class="btn btn-sm btn-outline-secondary" th:href="@{'/download/'+${dto.datasetIdx}}" th:text="Download"></a>
+	                	</div>
+	                	<small class="text-muted" th:text="'다운로드수 : ' + ${dto.downloadCnt}"></small>
+					</th:block>
+						
+	                
 	              </div>
 	            </div>
 	          </div>
@@ -45,63 +54,5 @@
 			<a href="/datasetBoard/datasetBoardWrite" class="btn btn-primary">데이터셋 추가</a>
 		</div>
 	</div>
-	<!-- <div class="container">
-		<div class="py-5 text-center">
-			<h1>게시판 리스트</h1>
-		</div>
-
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">글번호</th>
-					<th scope="col">제목</th>
-					<th scope="col">조회수</th>
-					<th scope="col">작성일</th>
-				</tr>
-			</thead>
-			<tbody>
-				if list의 사이즈가 0보다 크다면 리스트를 foreach를 통해 출력
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					dto>BoardDto에 있는 내용을 가져와 출력가능
-					<td th:text="${vo.boardIdx}"></td>
-					<td class="title"><a
-						th:href="@{/board/boardDetail/{boardIdx}(boardIdx=${vo.boardIdx})}"
-						th:text="${vo.title}"></a> th:attrappend : 속성에 값을 더할 수 있다.
-						 <a href="/board/boardDetail?idx=" th:attrappend="href=${vo.idx}" th:text="${vo.title}"></td>
-					
-					</td>
-					<td th:text="${vo.hitCnt}"></td>
-					<td th:text="${vo.createDate}"></td>
-				</tr>
-				unless = else
-				<tr th:unless="${#lists.size(list)} > 0">
-					<td colspan="4">조회된 결과가 없습니다.</td>
-				</tr>
-			</tbody>
-		</table>
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"
-					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
-					<a class="page-link" href="#"
-					th:href="@{/board/boardList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
-					tabindex="-1" aria-disabled="true">이전</a>
-				</li>
-				<li class="page-item"
-					th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
-					th:each="i : ${#numbers.sequence(startPage, endPage)}"><a
-					class="page-link" href="#"
-					th:href="@{/board/boardList(page=${i - 1}, searchText = ${param.searchText})}"
-					th:text="${i}">1</a></li>
-				<li class="page-item"
-					th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
-					<a class="page-link" href="#"
-					th:href="@{/board/boardList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">다음</a>
-				</li>
-			</ul>
-		</nav>
-		
-	</div> -->
-
 </div>
 </html>

@@ -19,4 +19,5 @@ public class DatasetFileDto {
 	private String originalFileName;
 	private String storedFilePath;
 	private long fileSize;
+	private int downloadCnt;
 }

@@ -36,42 +36,39 @@ public class DatasetBoardController {
 	@Autowired
 	private DatasetBoardService datasetBoardService; 
 	
-	@Autowired
-	private DatasetBoardService dataset;
-	
-	@GetMapping("/datasetBoard/datasetBoardList")
-	public void datasetBoardList(Model model) {
-		
-		List<DatasetBoard> list = datasetBoardService.boardList();
-		model.addAttribute("list", list);
-		
-		List<DatasetFileDto> file = dataset.fileList();
-		model.addAttribute("file", file);
-		
-		List<ThumbFileDto> thumb = dataset.thumbList();
-		model.addAttribute("thumb", thumb);
-	}
 	
 //	@GetMapping("/datasetBoard/datasetBoardList")
-//	public void datasetBoardList(Model model,
-//			@PageableDefault(size=5)Pageable pageable,								// 페이징 초기값 2 지정
-//			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
-//		Page<DatasetBoard> list = datasetBoardService.boardPageList(pageable, searchText);
+//	public void datasetBoardList(Model model) {
 //		
-//		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
-//		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
-//		
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
+//		List<DatasetBoard> list = datasetBoardService.boardList();
 //		model.addAttribute("list", list);
 //		
 //		List<DatasetFileDto> file = dataset.fileList();
-//		System.out.println("===============>"+file);
 //		model.addAttribute("file", file);
 //		
 //		List<ThumbFileDto> thumb = dataset.thumbList();
 //		model.addAttribute("thumb", thumb);
 //	}
+	
+	@GetMapping("/datasetBoard/datasetBoardList")
+	public void datasetBoardList(Model model,
+			@PageableDefault(size=100)Pageable pageable,								// 페이징 초기값 2 지정
+			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
+		Page<DatasetBoard> list = datasetBoardService.boardPageList(pageable, searchText);
+		
+		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
+		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("list", list);
+		
+		List<DatasetFileDto> file = datasetBoardService.fileList();
+		model.addAttribute("file", file);
+		
+		List<ThumbFileDto> thumb = datasetBoardService.thumbList();
+		model.addAttribute("thumb", thumb);
+	}
 	
 	@GetMapping("/datasetBoard/datasetBoardWrite")
 	public void datasetBoardWrite(Model model) {
@@ -84,9 +81,11 @@ public class DatasetBoardController {
 		return "redirect:/datasetBoard/datasetBoardList";
 	}
 	
+	// 파일 다운로드
 	@GetMapping("/download/{fileId}")
 	public ResponseEntity<Resource> fileDownload(@PathVariable("fileId") int fileId) throws IOException {
-	    DatasetFileDto file = dataset.getFile(fileId);
+	    DatasetFileDto file = datasetBoardService.getFile(fileId);
+	    
 	    Path path = Paths.get(file.getStoredFilePath());
 	    Resource resource = new InputStreamResource(Files.newInputStream(path));
 	    return ResponseEntity.ok()

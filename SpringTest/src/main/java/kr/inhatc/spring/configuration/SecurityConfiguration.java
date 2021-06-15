@@ -15,8 +15,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests().antMatchers("/", "/user/userWrite", "/user/userInsert").permitAll(); 	// 누구나 접근 가능
-		security.authorizeRequests().antMatchers("/user/**", "/board/**").hasRole("ADMIN"); 				// ADMIN 접근 가능
-		security.authorizeRequests().antMatchers("/board/**").hasAnyRole("ADMIN","MEMBER"); 				// ADMIN,MEMBER 접근 가능
+		security.authorizeRequests().antMatchers("/user/**", "/board/**", "/datasetBoard/**", "/diy/**").hasRole("ADMIN"); 				// ADMIN 접근 가능
+		security.authorizeRequests().antMatchers("/board/**", "/datasetBoard/**", "/diy/**").hasAnyRole("ADMIN","MEMBER"); 				// ADMIN,MEMBER 접근 가능
 		
 		// RESTfull 을 사용하기 위해서는 비활성화 (중요함!!) 
 		security.csrf().disable(); 

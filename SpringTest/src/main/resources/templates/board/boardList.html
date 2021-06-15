@@ -15,8 +15,18 @@
 <div layout:fragment="content">
 
 	<div class="container">
-		<div class="py-5 text-center">
-			<h1>게시판 리스트</h1>
+		<div class="row py-5">
+			<div class="col">
+				<h1>건의게시판</h1>
+			</div>
+			<div class="col-md-auto">
+				<form method="GET">
+					<input class="form-control" type="search" placeholder="사용자검색" id="searchText"
+		                			name= "searchText"
+		                			th:value="${param.searchText}" />
+				</form>
+			</div>
+		
 		</div>
 
 		<table class="table table-hover">

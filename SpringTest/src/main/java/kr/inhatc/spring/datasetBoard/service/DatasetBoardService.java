@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.datasetBoard.entity.DatasetBoard;
 import kr.inhatc.spring.datasetBoard.entity.DatasetFileDto;
+import kr.inhatc.spring.datasetBoard.entity.ThumbFileDto;
 
 public interface DatasetBoardService {
 
@@ -21,5 +22,7 @@ public interface DatasetBoardService {
 	List<DatasetFileDto> fileList();
 
 	DatasetFileDto getFile(int fileId);
+
+	List<ThumbFileDto> thumbList();
 
 }

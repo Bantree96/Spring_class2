@@ -15,7 +15,7 @@ public class ThumbFileDto {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idx;
 	
-	private String datasetId;
+	private int datasetIdx;
 	private String originalFileName;
 	private String storedFilePath;
 	private long fileSize;

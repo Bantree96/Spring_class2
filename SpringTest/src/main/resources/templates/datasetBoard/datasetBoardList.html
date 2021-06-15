@@ -22,9 +22,13 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
           	<div class="card shadow-sm">
-	            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-	
+         		<div th:each="thumbDto : ${thumb}" th:if="${thumbDto.datasetIdx == vo.boardIdx}">
+                	<img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${thumbDto.storedFilePath}"></a>
+				</div>
+<!-- 	            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+ -->	
 	            <div class="card-body">
+	            	<h4 th:text="${vo.title}"></h4>
 	              <p class="card-text" th:text="${vo.contents}"></p>
 	              <div class="d-flex justify-content-between align-items-center">
 	                <div class="btn-group" th:each="dto : ${file}" th:if="${dto.datasetIdx == vo.boardIdx}">

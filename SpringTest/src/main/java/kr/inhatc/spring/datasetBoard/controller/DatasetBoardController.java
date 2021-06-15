@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.datasetBoard.entity.DatasetBoard;
 import kr.inhatc.spring.datasetBoard.entity.DatasetFileDto;
+import kr.inhatc.spring.datasetBoard.entity.ThumbFileDto;
 import kr.inhatc.spring.datasetBoard.service.DatasetBoardService;
 
 
@@ -39,25 +40,41 @@ public class DatasetBoardController {
 	private DatasetBoardService dataset;
 	
 	@GetMapping("/datasetBoard/datasetBoardList")
-	public void datasetBoardList(Model model,
-			@PageableDefault(size=5)Pageable pageable,								// 페이징 초기값 2 지정
-			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
-		Page<DatasetBoard> list = datasetBoardService.boardPageList(pageable, searchText);
+	public void datasetBoardList(Model model) {
 		
-		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
-		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
-		
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
+		List<DatasetBoard> list = datasetBoardService.boardList();
 		model.addAttribute("list", list);
 		
 		List<DatasetFileDto> file = dataset.fileList();
-		System.out.println("===============>"+file);
 		model.addAttribute("file", file);
+		
+		List<ThumbFileDto> thumb = dataset.thumbList();
+		model.addAttribute("thumb", thumb);
 	}
 	
+//	@GetMapping("/datasetBoard/datasetBoardList")
+//	public void datasetBoardList(Model model,
+//			@PageableDefault(size=5)Pageable pageable,								// 페이징 초기값 2 지정
+//			@RequestParam(required = false, defaultValue = "") String searchText){ 	// 검색 초기값 "" 지정
+//		Page<DatasetBoard> list = datasetBoardService.boardPageList(pageable, searchText);
+//		
+//		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
+//		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+//		
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//		model.addAttribute("list", list);
+//		
+//		List<DatasetFileDto> file = dataset.fileList();
+//		System.out.println("===============>"+file);
+//		model.addAttribute("file", file);
+//		
+//		List<ThumbFileDto> thumb = dataset.thumbList();
+//		model.addAttribute("thumb", thumb);
+//	}
+	
 	@GetMapping("/datasetBoard/datasetBoardWrite")
-	public void datasetBoardList(Model model) {
+	public void datasetBoardWrite(Model model) {
 	}
 	
 	@PostMapping("/datasetBoard/datasetBoardInsert")
